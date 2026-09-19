@@ -1,24 +1,25 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import WhyMyRollingBox from "@/components/WhyMyRollingBox";
-import BookingProcess from "@/components/BookingProcess";
-import RatesCalculator from "@/components/RatesCalculator";
-import CityCoverage from "@/components/CityCoverage";
-import Reviews from "@/components/Reviews";
+import NavbarNeo from "@/components/NavbarNeo";
+import HeroNeo from "@/components/HeroNeo";
+import TrustBarNeo from "@/components/TrustBarNeo";
+import ServicesBentoNeo from "@/components/ServicesBentoNeo";
+import VerificationNeo from "@/components/VerificationNeo";
+import PackagingNeo from "@/components/PackagingNeo";
+import RatesCalculatorNeo from "@/components/RatesCalculatorNeo";
+import BranchesAndReviewsNeo from "@/components/BranchesAndReviewsNeo";
 import FAQSection from "@/components/FAQSection";
-import BottomCTABanner from "@/components/BottomCTABanner";
 import ContactLocations from "@/components/ContactLocations";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
+import TrackingModal from "@/components/TrackingModal";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingModalData, setBookingModalData] = useState<any>(null);
+  const [isTrackingModalOpen, setIsTrackingModalOpen] = useState(false);
 
   const handleOpenBookingModal = (dataOrService?: any) => {
     if (typeof dataOrService === "string") {
@@ -32,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-[#0B0E17] text-white">
       {/* Structured Schema */}
       <script
         type="application/ld+json"
@@ -41,10 +42,10 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "MovingCompany",
             name: "MyRollingBox Packers & Movers",
-            image: "https://myrollingbox.com/images/hero_rollingbox.jpg",
+            image: "https://myrollingbox.com/images/hero_delivery.jpg",
             "@id": "https://myrollingbox.com/#organization",
             url: "https://myrollingbox.com",
-            telephone: "+91-9876543210",
+            telephone: "+91-9300300300",
             priceRange: "₹₹",
             address: {
               "@type": "PostalAddress",
@@ -58,18 +59,23 @@ export default function Home() {
         }}
       />
 
-      <Navbar onOpenBookingModal={handleOpenBookingModal} />
-      
+      <NavbarNeo
+        onOpenBookingModal={handleOpenBookingModal}
+        onOpenTrackingModal={() => setIsTrackingModalOpen(true)}
+      />
+
       <main className="flex-1">
-        <Hero onOpenBookingModal={handleOpenBookingModal} />
-        <Services onOpenBookingModal={handleOpenBookingModal} />
-        <WhyMyRollingBox onOpenBookingModal={() => handleOpenBookingModal()} />
-        <BookingProcess onOpenBookingModal={() => handleOpenBookingModal()} />
-        <RatesCalculator onOpenBookingModal={handleOpenBookingModal} />
-        <CityCoverage onOpenBookingModal={handleOpenBookingModal} />
-        <Reviews />
+        <HeroNeo
+          onOpenBookingModal={handleOpenBookingModal}
+          onOpenTrackingModal={() => setIsTrackingModalOpen(true)}
+        />
+        <TrustBarNeo />
+        <ServicesBentoNeo onOpenBookingModal={handleOpenBookingModal} />
+        <VerificationNeo />
+        <PackagingNeo />
+        <RatesCalculatorNeo onOpenBookingModal={handleOpenBookingModal} />
+        <BranchesAndReviewsNeo onOpenBookingModal={handleOpenBookingModal} />
         <FAQSection />
-        <BottomCTABanner onOpenBookingModal={() => handleOpenBookingModal()} />
         <ContactLocations />
       </main>
 
@@ -80,6 +86,11 @@ export default function Home() {
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
         initialData={bookingModalData}
+      />
+
+      <TrackingModal
+        isOpen={isTrackingModalOpen}
+        onClose={() => setIsTrackingModalOpen(false)}
       />
     </div>
   );

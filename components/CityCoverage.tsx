@@ -4,6 +4,14 @@ import React from "react";
 import Link from "next/link";
 import { locationsData } from "@/data/locationsData";
 
+const routeImageMap: Record<string, string> = {
+  "Prayagraj ➔ Delhi": "/images/route_delhi.jpg",
+  "Prayagraj ➔ Mumbai": "/images/route_mumbai.jpg",
+  "Prayagraj ➔ Bangalore": "/images/route_bangalore.jpg",
+  "Prayagraj ➔ Hyderabad": "/images/route_hyderabad.jpg",
+  "Prayagraj ➔ Kolkata": "/images/route_kolkata.jpg",
+};
+
 interface CityCoverageProps {
   onOpenBookingModal: (preselectedData?: any) => void;
 }
@@ -43,34 +51,45 @@ export default function CityCoverage({ onOpenBookingModal }: CityCoverageProps) 
 
         {/* 5 City Route Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {prayagrajHub?.popularRoutes.map((route, rIdx) => (
-            <div
-              key={rIdx}
-              onClick={() => onOpenBookingModal({ fromCity: "Prayagraj", toCity: route.destination.split("➔")[1]?.trim() })}
-              className="card-mockup p-4 flex flex-col justify-between group hover:border-red-600 cursor-pointer"
-            >
-              <div>
-                {/* Photo Thumbnail placeholder mockup */}
-                <div className="w-full h-32 rounded-xl bg-slate-100 mb-3 overflow-hidden relative flex items-center justify-center border border-slate-200/80 group-hover:scale-105 transition-transform">
-                  <div className="text-2xl">🏛️</div>
+          {prayagrajHub?.popularRoutes.map((route, rIdx) => {
+            const imgSrc = routeImageMap[route.destination] || "/images/route_delhi.jpg";
+            return (
+              <div
+                key={rIdx}
+                onClick={() => onOpenBookingModal({ fromCity: "Prayagraj", toCity: route.destination.split("➔")[1]?.trim() })}
+                className="card-mockup p-4 flex flex-col justify-between group hover:border-red-600 cursor-pointer"
+              >
+                <div>
+                  {/* Photo Thumbnail */}
+                  <div className="w-full h-32 rounded-xl bg-slate-100 mb-3 overflow-hidden relative flex items-center justify-center border border-slate-200/80 group-hover:scale-105 transition-transform">
+                    <img
+                      src={imgSrc}
+                      alt={route.destination}
+                      className="absolute inset-0 w-full h-full object-cover z-0"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = "none";
+                      }}
+                    />
+                    <div className="text-2xl z-10">🏛️</div>
+                  </div>
+
+                  <h3 className="text-xs font-extrabold text-slate-900 mb-1 group-hover:text-red-600 transition-colors">
+                    {route.destination}
+                  </h3>
                 </div>
 
-                <h3 className="text-xs font-extrabold text-slate-900 mb-1 group-hover:text-red-600 transition-colors">
-                  {route.destination}
-                </h3>
+                <div className="flex items-center justify-between pt-3 border-t border-slate-100 mt-2">
+                  <div className="text-xs font-bold text-red-600">
+                    From <strong className="font-black">{route.startingPrice}</strong>
+                  </div>
+
+                  <div className="w-6 h-6 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-xs font-bold group-hover:bg-red-600 group-hover:text-white transition-colors">
+                    →
+                  </div>
+                </div>
               </div>
-
-              <div className="flex items-center justify-between pt-3 border-t border-slate-100 mt-2">
-                <div className="text-xs font-bold text-red-600">
-                  From <strong className="font-black">{route.startingPrice}</strong>
-                </div>
-
-                <div className="w-6 h-6 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-xs font-bold group-hover:bg-red-600 group-hover:text-white transition-colors">
-                  →
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

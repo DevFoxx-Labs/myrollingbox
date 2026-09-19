@@ -167,6 +167,78 @@ export default function RatesCalculator({ onOpenBookingModal }: RatesCalculatorP
 
         </div>
 
+        {/* Reference Price Matrix Table */}
+        <div className="mt-10 bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+            <div>
+              <h3 className="text-base font-black text-slate-900">Standard Relocation Rate Tariff</h3>
+              <p className="text-xs text-slate-500">Indicative market rates (Includes 7-layer packing, loading, & transport)</p>
+            </div>
+            <span className="text-[11px] font-bold text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full">
+              IBA Approved GST Invoice Available
+            </span>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="bg-slate-100 text-slate-700 font-extrabold border-b border-slate-200">
+                  <th className="py-3 px-4 rounded-l-xl">Move Category</th>
+                  <th className="py-3 px-4">Local Shifting (Within City)</th>
+                  <th className="py-3 px-4">Intercity (100 - 500 KM)</th>
+                  <th className="py-3 px-4">Interstate (&gt; 500 KM)</th>
+                  <th className="py-3 px-4 rounded-r-xl">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-700 font-medium">
+                <tr className="hover:bg-slate-50/80 transition-colors">
+                  <td className="py-3 px-4 font-bold text-slate-900">1 BHK Flat / Apartment</td>
+                  <td className="py-3 px-4 text-emerald-700 font-bold">₹3,500 - ₹6,500</td>
+                  <td className="py-3 px-4">₹8,500 - ₹14,000</td>
+                  <td className="py-3 px-4">₹14,500 - ₹22,000</td>
+                  <td className="py-3 px-4">
+                    <button onClick={() => onOpenBookingModal({ moveType: "1 BHK Flat" })} className="text-red-600 font-extrabold hover:underline cursor-pointer">
+                      Book Now →
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50/80 transition-colors">
+                  <td className="py-3 px-4 font-bold text-slate-900">2 BHK Flat / House</td>
+                  <td className="py-3 px-4 text-emerald-700 font-bold">₹6,000 - ₹10,500</td>
+                  <td className="py-3 px-4">₹12,500 - ₹20,000</td>
+                  <td className="py-3 px-4">₹20,500 - ₹32,000</td>
+                  <td className="py-3 px-4">
+                    <button onClick={() => onOpenBookingModal({ moveType: "2 BHK Flat" })} className="text-red-600 font-extrabold hover:underline cursor-pointer">
+                      Book Now →
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50/80 transition-colors">
+                  <td className="py-3 px-4 font-bold text-slate-900">3 BHK Independent House</td>
+                  <td className="py-3 px-4 text-emerald-700 font-bold">₹9,500 - ₹16,000</td>
+                  <td className="py-3 px-4">₹18,000 - ₹28,000</td>
+                  <td className="py-3 px-4">₹28,500 - ₹45,000</td>
+                  <td className="py-3 px-4">
+                    <button onClick={() => onOpenBookingModal({ moveType: "3 BHK House" })} className="text-red-600 font-extrabold hover:underline cursor-pointer">
+                      Book Now →
+                    </button>
+                  </td>
+                </tr>
+                <tr className="hover:bg-slate-50/80 transition-colors">
+                  <td className="py-3 px-4 font-bold text-slate-900">Car / Sedan Transport</td>
+                  <td className="py-3 px-4 text-emerald-700 font-bold">₹2,500 - ₹4,500</td>
+                  <td className="py-3 px-4">₹6,000 - ₹10,000</td>
+                  <td className="py-3 px-4">₹11,000 - ₹18,000</td>
+                  <td className="py-3 px-4">
+                    <button onClick={() => onOpenBookingModal({ moveType: "Car Transport" })} className="text-red-600 font-extrabold hover:underline cursor-pointer">
+                      Book Now →
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
   );

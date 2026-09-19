@@ -64,20 +64,25 @@ export default function WhyMyRollingBox({ onOpenBookingModal }: WhyMyRollingBoxP
 
             {/* Container Truck Graphic Container */}
             <div className="w-full h-80 sm:h-96 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 overflow-hidden relative border border-slate-700 shadow-2xl flex flex-col justify-between p-6 text-white">
-              
-              {/* Landmark Silhouette Background Representation */}
-              <div className="absolute inset-0 bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
-              
+              <img
+                src="/images/truck_highway.jpg"
+                alt="MyRollingBox Lockable Container Truck on Highway"
+                className="absolute inset-0 w-full h-full object-cover z-0"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = "none";
+                }}
+              />
+
               {/* Top Banner Tag */}
               <div className="flex justify-between items-center z-10">
                 <span className="text-xs font-black uppercase tracking-wider bg-red-600 text-white px-3 py-1 rounded-full shadow-md">
                   🚚 Lockable Express Fleet
                 </span>
-                <span className="text-xs font-bold text-yellow-300">Pan-India Transit</span>
+                <span className="text-xs font-bold text-yellow-300 bg-black/40 px-2.5 py-1 rounded-md">Pan-India Transit</span>
               </div>
 
-              {/* Truck Illustration graphic mockup */}
-              <div className="relative z-10 text-center space-y-3 bg-slate-900/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-lg mx-auto shadow-2xl">
+              {/* Truck Illustration fallback */}
+              <div className="relative z-10 text-center space-y-3 bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-lg mx-auto shadow-2xl">
                 <div className="inline-flex items-center gap-2 bg-white text-slate-900 font-black text-xl sm:text-2xl px-5 py-2.5 rounded-xl shadow-lg border-2 border-red-500">
                   <span className="w-4 h-4 rounded-full bg-red-600" />
                   <span>MyRollingBox Truck</span>

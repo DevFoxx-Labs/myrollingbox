@@ -24,30 +24,35 @@ export default function Navbar({ onOpenBookingModal }: NavbarProps) {
     <>
       {/* Top Black Announcement Bar */}
       <div className="bg-[#0B0F19] text-white text-xs py-2 px-4 select-none border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="hidden md:flex items-center gap-6 text-slate-300 font-medium text-[11px]">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-              India&apos;s Trusted Packers & Movers
+        <div className="max-w-7xl mx-auto flex items-center justify-between font-medium">
+          <div className="hidden lg:flex items-center gap-4 text-slate-300 text-[11px]">
+            <span className="flex items-center gap-1.5 text-amber-400 font-bold">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              IBA Approved Bills
             </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-              1,00,000+ Happy Families
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-              Pan-India Service
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-              No Hidden Charges
-            </span>
+            <span className="text-slate-600">•</span>
+            <Link href="#tracking" className="hover:text-red-400 transition-colors flex items-center gap-1">
+              <span>Track Consignment</span>
+            </Link>
+            <span className="text-slate-600">•</span>
+            <Link href="#fake-warning" className="hover:text-amber-400 transition-colors text-amber-300 font-semibold flex items-center gap-1">
+              <span>⚠️ Beware of Fake</span>
+            </Link>
+            <span className="text-slate-600">•</span>
+            <Link href="#pricing" className="hover:text-red-400 transition-colors">
+              Online Payment
+            </Link>
+            <span className="text-slate-600">•</span>
+            <span className="text-slate-400">ISO 9001:2015 Certified</span>
           </div>
 
-          <div className="mx-auto md:mx-0 flex items-center gap-4 text-xs font-bold text-slate-200">
-            <a href="tel:+919876543210" className="flex items-center gap-1.5 hover:text-red-400 transition-colors">
-              <Phone className="w-3.5 h-3.5 text-red-500" />
-              <span>+91 98765 43210</span>
+          <div className="mx-auto lg:mx-0 flex items-center gap-4 text-xs font-bold text-slate-200">
+            <span className="hidden sm:inline-block text-[11px] text-slate-400 font-normal">
+              24/7 Helpline:
+            </span>
+            <a href="tel:+919300300300" className="flex items-center gap-1.5 hover:text-red-400 transition-colors bg-red-600/20 text-red-400 border border-red-500/30 px-2.5 py-0.5 rounded-full text-xs font-bold">
+              <Phone className="w-3 h-3 text-red-400" />
+              <span>+91 9300 300 300</span>
             </a>
           </div>
         </div>

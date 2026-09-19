@@ -14,8 +14,26 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
   const [moveDate, setMoveDate] = useState("");
   const [moveType, setMoveType] = useState("");
 
+  // Consignment Tracking State
+  const [trackingNo, setTrackingNo] = useState("");
+  const [trackingResult, setTrackingResult] = useState<any>(null);
+
   const handleQuoteSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (activeTab === "Track") {
+      if (!trackingNo.trim()) return;
+      setTrackingResult({
+        docket: trackingNo.toUpperCase(),
+        status: "In Transit",
+        location: "En Route near Kanpur (NH-19)",
+        origin: "Prayagraj (Allahabad)",
+        destination: "Delhi NCR (Gurugram Hub)",
+        eta: "Tomorrow, 4:30 PM",
+        driver: "Rajesh Sharma (GPS Active)",
+      });
+      return;
+    }
+
     onOpenBookingModal({
       fromCity: pickupCity || "Prayagraj (Allahabad)",
       toCity: destCity || "Delhi NCR",
@@ -110,7 +128,7 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
 
           </div>
 
-          {/* Right Hero Column - Form & Delivery Image Visual */}
+          {/* Right Hero Column - Form & Generated Delivery Image */}
           <div className="lg:col-span-6 relative">
             
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
@@ -124,91 +142,140 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
 
                 {/* Tab selector */}
                 <div className="flex bg-slate-100 p-1 rounded-xl mb-4 text-xs font-bold">
-                  {["Home", "Office", "Vehicle"].map((tab) => (
+                  {["Home", "Office", "Vehicle", "Track"].map((tab) => (
                     <button
                       key={tab}
-                      onClick={() => setActiveTab(tab)}
+                      onClick={() => {
+                        setActiveTab(tab);
+                        setTrackingResult(null);
+                      }}
                       className={`flex-1 py-1.5 rounded-lg text-center transition-all cursor-pointer ${
                         activeTab === tab
                           ? "bg-red-600 text-white shadow-xs"
                           : "text-slate-600 hover:text-slate-900"
                       }`}
                     >
-                      {tab}
+                      {tab === "Track" ? "🔍 Track" : tab}
                     </button>
                   ))}
                 </div>
 
                 <form onSubmit={handleQuoteSubmit} className="space-y-3 text-xs">
-                  <div>
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
-                      Route City
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Enter pickup city"
-                      value={pickupCity}
-                      onChange={(e) => setPickupCity(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
-                      To City
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Enter destination city"
-                      value={destCity}
-                      onChange={(e) => setDestCity(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
-                      Move Date
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="Select date"
-                        value={moveDate}
-                        onChange={(e) => setMoveDate(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 pr-8 text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
-                      />
-                      <Calendar className="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
-                      Move Type
-                    </label>
-                    <div className="relative">
-                      <select
-                        value={moveType}
-                        onChange={(e) => setMoveType(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 appearance-none text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
+                  {activeTab === "Track" ? (
+                    <>
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                          Consignment / Docket No.
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. MRB-987654 or Phone No."
+                          value={trackingNo}
+                          onChange={(e) => setTrackingNo(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-slate-900 font-bold focus:border-red-600 focus:outline-none"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="w-full btn-red-pill py-3 text-xs font-extrabold flex items-center justify-center gap-1.5 cursor-pointer shadow-md mt-2"
                       >
-                        <option value="">Select move type</option>
-                        <option value="1 BHK">1 BHK Flat</option>
-                        <option value="2 BHK">2 BHK Flat</option>
-                        <option value="3 BHK">3 BHK House</option>
-                        <option value="Villa">Villa / 4+ BHK</option>
-                      </select>
-                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5 pointer-events-none" />
-                    </div>
-                  </div>
+                        <span>Track Consignment</span>
+                        <span>→</span>
+                      </button>
 
-                  <button
-                    type="submit"
-                    className="w-full btn-red-pill py-3 text-xs font-extrabold flex items-center justify-center gap-1.5 cursor-pointer shadow-md mt-2"
-                  >
-                    <span>Get Quote Now</span>
-                    <span>→</span>
-                  </button>
+                      {trackingResult && (
+                        <div className="mt-3 p-3 bg-red-50/80 border border-red-200 rounded-xl text-xs space-y-1.5 animate-fadeIn">
+                          <div className="flex justify-between items-center font-bold text-red-700">
+                            <span>Docket: {trackingResult.docket}</span>
+                            <span className="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">
+                              {trackingResult.status}
+                            </span>
+                          </div>
+                          <p className="text-slate-700 text-[11px]">
+                            <strong>Location:</strong> {trackingResult.location}
+                          </p>
+                          <p className="text-slate-700 text-[11px]">
+                            <strong>ETA:</strong> {trackingResult.eta}
+                          </p>
+                          <p className="text-slate-500 text-[10px]">
+                            Driver: {trackingResult.driver}
+                          </p>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                          Route City
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Enter pickup city"
+                          value={pickupCity}
+                          onChange={(e) => setPickupCity(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                          To City
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Enter destination city"
+                          value={destCity}
+                          onChange={(e) => setDestCity(e.target.value)}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                          Move Date
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Select date"
+                            value={moveDate}
+                            onChange={(e) => setMoveDate(e.target.value)}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 pr-8 text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
+                          />
+                          <Calendar className="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5" />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
+                          Move Type
+                        </label>
+                        <div className="relative">
+                          <select
+                            value={moveType}
+                            onChange={(e) => setMoveType(e.target.value)}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 appearance-none text-slate-900 font-semibold focus:border-red-600 focus:outline-none"
+                          >
+                            <option value="">Select move type</option>
+                            <option value="1 BHK">1 BHK Flat</option>
+                            <option value="2 BHK">2 BHK Flat</option>
+                            <option value="3 BHK">3 BHK House</option>
+                            <option value="Villa">Villa / 4+ BHK</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-2.5 pointer-events-none" />
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full btn-red-pill py-3 text-xs font-extrabold flex items-center justify-center gap-1.5 cursor-pointer shadow-md mt-2"
+                      >
+                        <span>Get Quote Now</span>
+                        <span>→</span>
+                      </button>
+                    </>
+                  )}
                 </form>
 
                 <p className="text-[10px] text-slate-400 text-center font-medium mt-3">
@@ -216,7 +283,7 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
                 </p>
               </div>
 
-              {/* Delivery Executive Visual Graphic */}
+              {/* Delivery Executive Visual Graphic using Generated Image */}
               <div className="hidden sm:block sm:col-span-5 relative">
                 
                 {/* Handwritten Annotation top right */}
@@ -224,34 +291,13 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
                   Happy<br />Moves,<br />Happier<br />People ⤵
                 </div>
 
-                {/* Delivery Boy Styled Visual Card */}
-                <div className="w-full h-84 rounded-3xl overflow-hidden bg-gradient-to-b from-red-600 via-red-500 to-red-600 relative border border-slate-200 shadow-xl flex flex-col justify-between p-4 text-white">
-                  
-                  {/* Decorative background elements */}
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-xl pointer-events-none" />
-                  
-                  {/* Executive Header */}
-                  <div className="flex items-center justify-between z-10">
-                    <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md">
-                      Verified Crew
-                    </span>
-                    <span className="text-xs font-bold text-yellow-300">★ 4.9 Verified</span>
-                  </div>
-
-                  {/* Center Graphic */}
-                  <div className="text-center my-auto z-10 space-y-2">
-                    <div className="w-20 h-20 mx-auto rounded-2xl bg-white text-slate-900 flex flex-col items-center justify-center shadow-2xl border-2 border-red-200">
-                      <span className="text-3xl">📦</span>
-                      <span className="text-[9px] font-black tracking-tight text-red-600 uppercase">MyRollingBox</span>
-                    </div>
-                    <h4 className="text-sm font-black leading-tight">Safe Doorstep Delivery</h4>
-                    <p className="text-[10px] text-red-100 font-medium">Uniformed & Background-Verified Staff</p>
-                  </div>
-
-                  {/* Bottom Footer */}
-                  <div className="bg-black/30 backdrop-blur-md p-2 rounded-xl text-center z-10 border border-white/10">
-                    <span className="text-[10px] font-bold tracking-wide">100% Personal Lock Key Guarantee</span>
-                  </div>
+                {/* Delivery Boy Image Card */}
+                <div className="w-full h-84 rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative bg-slate-100">
+                  <img
+                    src="/images/hero_delivery.jpg"
+                    alt="MyRollingBox Delivery Executive"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Floating Bottom Right Badge */}

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Phone } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 
 interface BottomCTABannerProps {
   onOpenBookingModal: () => void;
@@ -9,44 +9,50 @@ interface BottomCTABannerProps {
 
 export default function BottomCTABanner({ onOpenBookingModal }: BottomCTABannerProps) {
   return (
-    <section className="bg-gradient-to-r from-red-600 via-red-700 to-red-600 text-white py-12 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-8 bg-[#FAFAFC] relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="bg-gradient-to-r from-[#D91B24] via-[#E5232C] to-[#C81018] rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden shadow-xl border border-red-600/30">
           
-          {/* Left Headline */}
-          <div className="space-y-2 text-center lg:text-left">
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
-              Ready to Move?<br className="hidden sm:block" /> Get Your Free Quote Today!
-            </h2>
-            <p className="text-xs sm:text-sm text-red-100 font-medium">
-              Join 1,00,000+ happy families who moved safely with MyRollingBox.
-            </p>
-          </div>
-
-          {/* Right Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
-            {/* Handwritten annotation top right */}
-            <div className="hidden sm:block absolute -top-8 -right-4 handwritten-text text-xs text-white transform rotate-6">
-              New Home, New Memories ⤵
+            {/* Left Headline */}
+            <div className="lg:col-span-6 space-y-2 text-center lg:text-left">
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
+                Ready to Move?<br />
+                Get Your Free Quote Today!
+              </h2>
+              <p className="text-xs sm:text-sm text-red-100 font-medium">
+                Join 1,00,000+ happy families who moved safely with MyRollingBox.
+              </p>
             </div>
 
-            <button
-              onClick={onOpenBookingModal}
-              className="bg-white text-slate-900 font-extrabold text-xs px-7 py-3.5 rounded-full hover:bg-slate-100 transition-colors shadow-lg cursor-pointer flex items-center gap-1.5"
-            >
-              <span>Get Free Quote</span>
-              <span>→</span>
-            </button>
+            {/* Center Action Buttons */}
+            <div className="lg:col-span-6 flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 relative">
+              
+              <button
+                onClick={onOpenBookingModal}
+                className="bg-white text-rose-600 text-xs font-black px-7 py-3.5 rounded-full shadow-lg hover:bg-rose-50 transition-all flex items-center gap-2 cursor-pointer shrink-0"
+              >
+                <span>Get Free Quote</span>
+                <ArrowRight className="w-4 h-4 text-rose-600" />
+              </button>
 
-            <a
-              href="tel:+919876543210"
-              className="border-1.5 border-white text-white font-bold text-xs px-6 py-3.5 rounded-full hover:bg-white/10 transition-colors flex items-center gap-2"
-            >
-              <Phone className="w-3.5 h-3.5 text-white" />
-              <span>+91 98765 43210</span>
-            </a>
+              <a
+                href="tel:+919300300300"
+                className="bg-rose-700/60 border border-white/30 text-white text-xs font-bold px-6 py-3.5 rounded-full flex items-center gap-2 hover:bg-rose-700/80 transition-all shrink-0"
+              >
+                <Phone className="w-3.5 h-3.5 text-white fill-white" />
+                <span>+91 9300 300 300</span>
+              </a>
+
+              {/* Handwritten annotation right top */}
+              <div className="hidden xl:block absolute -top-10 right-4 handwritten-text text-sm text-white transform rotate-3 whitespace-nowrap">
+                New Home<br />
+                New Memories ⤵
+              </div>
+            </div>
+
           </div>
 
         </div>

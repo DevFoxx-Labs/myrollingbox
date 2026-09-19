@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Phone, MessageSquare } from "lucide-react";
+import { Plus, X, Phone, MessageSquare, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -13,120 +13,160 @@ export default function FAQSection() {
     },
     {
       q: "Is my household items insured during transit?",
-      a: "Yes! Full transit damage insurance is available to cover accidental road risks or mishaps.",
+      a: "Yes! Comprehensive 100% transit damage insurance is included with instant policy certificates to cover all accidental road risks.",
     },
     {
       q: "How do I get a quote for my move?",
-      a: "You can use our online price calculator, request an instant callback, or schedule a free doorstep survey.",
+      a: "You can use our instant online cost calculator, request an immediate callback, or book a free doorstep survey through our helpline.",
     },
     {
       q: "How long does delivery take?",
-      a: "Local moves take 4 to 8 hours. Intercity shipments typically take 24 to 72 hours depending on distance.",
+      a: "Local intra-city moves are completed within 4 to 8 hours. Intercity shipments take 24 to 72 hours with live GPS highway tracking.",
     },
     {
       q: "Do you provide packing and unpacking services?",
-      a: "Yes, 7-layer packing, loading, unloading, and furniture reassembly are all included.",
+      a: "Yes! 7-layer protective packing, loading, unloading, furniture dismantling, and setup are fully handled by our trained crew.",
     },
     {
       q: "Which cities do you serve?",
-      a: "We provide pan-India logistics serving over 150+ cities across all major Indian states.",
+      a: "We provide pan-India relocation services with 100+ owned company branch offices serving all major cities across India.",
     },
   ];
 
   return (
-    <section id="faqs" className="py-20 bg-white relative border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faqs" className="py-16 bg-[#FAFAFC] relative border-b border-slate-200/80 select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
-        {/* Header */}
-        <div className="space-y-2 mb-12">
-          <div className="flex items-center gap-2 text-xs font-bold text-red-600 uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-xs bg-red-600" />
-            <span>Frequently Asked Questions</span>
+        {/* Top Header Row with Pagination Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-1.5 text-xs font-black text-rose-600 uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-rose-600 fill-rose-600" />
+              <span>FREQUENTLY ASKED QUESTIONS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              Got Questions? We&apos;ve Got Answers.
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Got Questions? We&apos;ve Got Answers.
-          </h2>
+
+          {/* Carousel Slider Pagination Indicators */}
+          <div className="flex items-center gap-2 self-start sm:self-center">
+            <button className="w-8 h-8 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:border-slate-400 hover:text-slate-900 transition-colors shadow-2xs">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <div className="flex items-center gap-1 px-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-900" />
+              <span className="w-2 h-2 rounded-full bg-slate-300" />
+            </div>
+            <button className="w-8 h-8 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:border-slate-400 hover:text-slate-900 transition-colors shadow-2xs">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Main Grid: Left Accordion + Right Support Representative Box */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Left Accordions */}
-          <div className="lg:col-span-7 space-y-3">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className={`rounded-2xl border transition-all ${
-                  openIdx === idx
-                    ? "bg-[#FFF1F2] border-red-200"
-                    : "bg-white border-slate-200 hover:border-slate-300"
-                }`}
-              >
-                <button
-                  onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 cursor-pointer"
+          {/* Left Accordion Column */}
+          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-md space-y-3 flex flex-col justify-between">
+            {faqs.map((faq, idx) => {
+              const isOpen = openIdx === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? "bg-white border-slate-200 shadow-2xs"
+                      : "bg-white border-slate-100 hover:border-slate-200"
+                  }`}
                 >
-                  <span className="flex items-center gap-2.5">
-                    {openIdx === idx && (
-                      <span className="w-2 h-2 rounded-xs bg-red-600 shrink-0" />
-                    )}
-                    <span>{faq.q}</span>
-                  </span>
-                  <Plus
-                    className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-300 ${
-                      openIdx === idx ? "rotate-45 text-red-600" : ""
-                    }`}
-                  />
-                </button>
+                  <button
+                    onClick={() => setOpenIdx(isOpen ? null : idx)}
+                    className="w-full p-4 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* Left Radio Icon */}
+                      {isOpen ? (
+                        <div className="w-5 h-5 rounded-full bg-rose-100 text-rose-600 border border-rose-200 flex items-center justify-center text-xs font-black shrink-0">
+                          <X className="w-3 h-3 stroke-[3]" />
+                        </div>
+                      ) : (
+                        <div className="w-5 h-5 rounded-full border-2 border-slate-300 shrink-0" />
+                      )}
+                      
+                      <span className={isOpen ? "text-slate-900 font-extrabold" : "text-slate-800 font-bold"}>
+                        {faq.q}
+                      </span>
+                    </div>
 
-                {openIdx === idx && (
-                  <div className="px-5 pb-5 text-xs text-slate-600 font-medium leading-relaxed border-t border-red-100 pt-3">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
+                    {/* Right Action Icon */}
+                    {!isOpen && (
+                      <Plus className="w-4 h-4 text-slate-400 shrink-0" />
+                    )}
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 pb-5 pl-12 text-xs text-slate-600 font-medium leading-relaxed">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Right Customer Support Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="bg-gradient-to-b from-red-50 to-red-100 rounded-3xl p-8 border border-red-200 text-center space-y-6 shadow-md relative overflow-hidden">
-              
-              {/* Headset Girl / Support Image Banner */}
-              <div className="w-24 h-24 mx-auto rounded-full bg-red-600 flex items-center justify-center text-white text-3xl shadow-lg">
-                🎧
-              </div>
+          {/* Right Customer Support Representative Box */}
+          <div className="lg:col-span-5 bg-[#FFF5F5] rounded-3xl p-7 sm:p-8 border border-rose-100 relative overflow-hidden shadow-md flex flex-col justify-between min-h-[380px]">
+            
+            {/* Background Cutout Image of Customer Support Woman */}
+            <div className="absolute top-0 right-0 bottom-0 w-1/2 sm:w-5/12 pointer-events-none overflow-hidden">
+              <img
+                src="/images/support_woman.jpg"
+                alt="MyRollingBox Support Representative"
+                className="w-full h-full object-cover object-left"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = "none";
+                }}
+              />
+            </div>
 
-              <div>
-                <h3 className="text-xl font-black text-slate-900 mb-1">Still have questions?</h3>
-                <p className="text-xs text-slate-600 font-medium">
+            {/* Content Left Overlay */}
+            <div className="relative z-10 max-w-[60%] space-y-6">
+              <div className="space-y-1">
+                <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                  Still have questions?
+                </h3>
+                <p className="text-xs text-slate-600 font-medium leading-normal">
                   Our support team is here to help you.
                 </p>
               </div>
 
+              {/* Pill CTAs */}
               <div className="space-y-3 pt-2">
                 <a
-                  href="tel:+919876543210"
-                  className="w-full btn-outline-pill py-3 text-xs font-bold flex items-center justify-center gap-2"
+                  href="tel:+919300300300"
+                  className="w-full bg-white text-rose-600 border-2 border-rose-500 font-extrabold text-xs py-3 px-5 rounded-full flex items-center justify-center gap-2 shadow-xs hover:bg-rose-50 transition-colors cursor-pointer"
                 >
-                  <Phone className="w-4 h-4 text-red-600" />
+                  <Phone className="w-3.5 h-3.5 text-rose-600 fill-rose-600" />
                   <span>Call Now</span>
                 </a>
 
                 <a
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/919300300300"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md hover:bg-emerald-600 transition-colors"
+                  className="w-full bg-white text-emerald-600 border-2 border-emerald-500 font-extrabold text-xs py-3 px-5 rounded-full flex items-center justify-center gap-2 shadow-xs hover:bg-emerald-50 transition-colors cursor-pointer"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
                   <span>Chat on WhatsApp</span>
                 </a>
               </div>
 
-              <p className="text-[10px] text-slate-500 font-medium pt-2">
-                Available Mon - Sat, 9AM - 8PM
+              <p className="text-[10px] text-slate-500 font-bold tracking-wide pt-1">
+                Available Mon - Sat, 9AM - 9PM
               </p>
             </div>
+
           </div>
 
         </div>
