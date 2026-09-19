@@ -10,6 +10,12 @@ export interface ServiceItem {
   heroImage: string;
   keyFeatures: string[];
   benefits: string[];
+  recommendedContainers?: {
+    name: string;
+    type: string;
+    capacity: string;
+    estPrice: string;
+  }[];
   faqs: {
     question: string;
     answer: string;
@@ -38,6 +44,10 @@ export const servicesData: ServiceItem[] = [
       "No risk of item loss or theft thanks to customer-owned key locking",
       "Clean, sanitized, moisture-proof Rolling Box containers",
       "Punctual delivery schedule with dedicated supervisor",
+    ],
+    recommendedContainers: [
+      { name: "Rolling Box Mini (150 cu.ft)", type: "1 BHK / Studio Flat", capacity: "Up to 1.5 Tons", estPrice: "₹4,500 - ₹8,500" },
+      { name: "Rolling Box Standard (300 cu.ft)", type: "2 BHK / 3 BHK Compact", capacity: "Up to 3.5 Tons", estPrice: "₹8,500 - ₹16,000" },
     ],
     faqs: [
       { question: "How does the Rolling Box personal lock system work?", answer: "Once your goods are loaded into the Rolling Box container, the container is locked in front of you. You hold the master key and unlock it upon arrival at your new destination." },

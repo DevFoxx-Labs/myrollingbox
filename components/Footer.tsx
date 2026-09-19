@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Package, Facebook, Instagram, Youtube, Linkedin, ArrowRight } from "lucide-react";
+import { Package, Globe, Share2 } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -32,17 +32,17 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className="flex items-center gap-2 text-slate-400">
-              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-red-500 hover:border-red-500 transition-colors">
-                <Facebook className="w-3.5 h-3.5" />
+              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white text-[10px] font-bold hover:text-red-500 hover:border-red-500 transition-colors">
+                fb
               </a>
-              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-red-500 hover:border-red-500 transition-colors">
-                <Instagram className="w-3.5 h-3.5" />
+              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white text-[10px] font-bold hover:text-red-500 hover:border-red-500 transition-colors">
+                ig
               </a>
-              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-red-500 hover:border-red-500 transition-colors">
-                <Youtube className="w-3.5 h-3.5" />
+              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white text-[10px] font-bold hover:text-red-500 hover:border-red-500 transition-colors">
+                yt
               </a>
-              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-red-500 hover:border-red-500 transition-colors">
-                <Linkedin className="w-3.5 h-3.5" />
+              <a href="#" className="w-7 h-7 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-white text-[10px] font-bold hover:text-red-500 hover:border-red-500 transition-colors">
+                in
               </a>
             </div>
           </div>
