@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, ArrowRight, Users, MapPin, Star } from "lucide-react";
+import { Users, MapPin, Star } from "lucide-react";
 
 interface WhyMyRollingBoxProps {
   onOpenBookingModal: () => void;
@@ -35,7 +35,7 @@ export default function WhyMyRollingBox({ onOpenBookingModal }: WhyMyRollingBoxP
             <ul className="space-y-3 pt-2">
               {points.map((pt, idx) => (
                 <li key={idx} className="flex items-center gap-3 text-xs sm:text-sm font-bold text-slate-800">
-                  <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center text-white text-xs shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center text-white text-xs shrink-0 font-black">
                     ✓
                   </div>
                   <span>{pt}</span>
@@ -54,39 +54,50 @@ export default function WhyMyRollingBox({ onOpenBookingModal }: WhyMyRollingBoxP
             </div>
           </div>
 
-          {/* Right Truck Banner & Stats Card */}
+          {/* Right Truck Banner Graphic Area */}
           <div className="lg:col-span-7 relative">
             
-            {/* Handwritten annotation on top right */}
-            <div className="hidden sm:block absolute -top-10 right-8 handwritten-text text-sm transform rotate-6 text-slate-800 leading-tight">
+            {/* Handwritten annotation top right */}
+            <div className="hidden sm:block absolute -top-10 right-8 handwritten-text text-sm transform rotate-6 text-slate-800 leading-tight z-30">
               Moving A Stronger India<br />Together ⤵
             </div>
 
-            {/* Container Truck Graphic Area */}
-            <div className="w-full h-80 sm:h-96 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 overflow-hidden relative border border-slate-700 shadow-2xl flex items-center justify-center">
+            {/* Container Truck Graphic Container */}
+            <div className="w-full h-80 sm:h-96 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 overflow-hidden relative border border-slate-700 shadow-2xl flex flex-col justify-between p-6 text-white">
               
-              {/* Landmark Silhouette Background */}
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
+              {/* Landmark Silhouette Background Representation */}
+              <div className="absolute inset-0 bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
               
+              {/* Top Banner Tag */}
+              <div className="flex justify-between items-center z-10">
+                <span className="text-xs font-black uppercase tracking-wider bg-red-600 text-white px-3 py-1 rounded-full shadow-md">
+                  🚚 Lockable Express Fleet
+                </span>
+                <span className="text-xs font-bold text-yellow-300">Pan-India Transit</span>
+              </div>
+
               {/* Truck Illustration graphic mockup */}
-              <div className="relative z-10 text-center space-y-4 px-6">
-                <div className="inline-flex items-center gap-3 bg-red-600 text-white font-black text-lg sm:text-2xl px-6 py-3 rounded-2xl shadow-xl">
-                  🚚 MYROLLINGBOX CONTAINER TRUCK
+              <div className="relative z-10 text-center space-y-3 bg-slate-900/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-lg mx-auto shadow-2xl">
+                <div className="inline-flex items-center gap-2 bg-white text-slate-900 font-black text-xl sm:text-2xl px-5 py-2.5 rounded-xl shadow-lg border-2 border-red-500">
+                  <span className="w-4 h-4 rounded-full bg-red-600" />
+                  <span>MyRollingBox Truck</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300 font-bold max-w-md mx-auto">
-                  100% Sealed & Weatherproof Polypropylene Moving Containers
+                <p className="text-xs sm:text-sm text-slate-200 font-semibold">
+                  Zero Item Damage • Customer Keeps Personal Lock Key • Real-Time GPS
                 </p>
               </div>
+
+              <div />
             </div>
 
             {/* Bottom Floating Stats Bar */}
-            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-[90%] sm:w-[80%] bg-white rounded-2xl p-4 shadow-xl border border-slate-200 flex items-center justify-around text-center">
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-[92%] sm:w-[85%] bg-white rounded-2xl p-4 shadow-xl border border-slate-200 flex items-center justify-around text-center z-20">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
                   <Users className="w-5 h-5" />
                 </div>
                 <div className="text-left">
-                  <span className="text-sm font-black text-slate-900 block leading-none">1,00,000+</span>
+                  <span className="text-sm sm:text-base font-black text-slate-900 block leading-none">1,00,000+</span>
                   <span className="text-[10px] text-slate-500 font-bold">Happy Families</span>
                 </div>
               </div>
@@ -98,7 +109,7 @@ export default function WhyMyRollingBox({ onOpenBookingModal }: WhyMyRollingBoxP
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="text-left">
-                  <span className="text-sm font-black text-slate-900 block leading-none">150+</span>
+                  <span className="text-sm sm:text-base font-black text-slate-900 block leading-none">150+</span>
                   <span className="text-[10px] text-slate-500 font-bold">Cities</span>
                 </div>
               </div>
@@ -110,7 +121,7 @@ export default function WhyMyRollingBox({ onOpenBookingModal }: WhyMyRollingBoxP
                   <Star className="w-5 h-5 fill-red-600" />
                 </div>
                 <div className="text-left">
-                  <span className="text-sm font-black text-slate-900 block leading-none">4.9 / 5</span>
+                  <span className="text-sm sm:text-base font-black text-slate-900 block leading-none">4.9 / 5</span>
                   <span className="text-[10px] text-slate-500 font-bold">Customer Rating</span>
                 </div>
               </div>

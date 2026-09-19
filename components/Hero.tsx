@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { ShieldCheck, Truck, Lock, Users, Play, Calendar, ChevronDown, ArrowRight } from "lucide-react";
+import { ShieldCheck, Truck, Lock, Users, Calendar, ChevronDown } from "lucide-react";
 
 interface HeroProps {
   onOpenBookingModal: (preselectedData?: any) => void;
@@ -111,10 +110,9 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
 
           </div>
 
-          {/* Right Hero Column - Form & Delivery Image */}
+          {/* Right Hero Column - Form & Delivery Image Visual */}
           <div className="lg:col-span-6 relative">
             
-            {/* Split Grid for Form & Image */}
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
               
               {/* Free Quote Card */}
@@ -218,30 +216,50 @@ export default function Hero({ onOpenBookingModal }: HeroProps) {
                 </p>
               </div>
 
-              {/* Delivery Boy Image & Floating Badges */}
+              {/* Delivery Executive Visual Graphic */}
               <div className="hidden sm:block sm:col-span-5 relative">
-                {/* Handwritten Annotation on Top Right */}
-                <div className="absolute -top-6 right-0 handwritten-text text-sm transform rotate-6 text-slate-800 leading-tight">
+                
+                {/* Handwritten Annotation top right */}
+                <div className="absolute -top-6 right-0 handwritten-text text-sm transform rotate-6 text-slate-800 leading-tight z-30">
                   Happy<br />Moves,<br />Happier<br />People ⤵
                 </div>
 
-                {/* Delivery Boy Vector Image Illustration */}
-                <div className="w-full h-80 rounded-3xl overflow-hidden bg-gradient-to-b from-red-50 to-red-100/50 relative border border-slate-200 flex items-center justify-center">
-                  <div className="text-center p-4">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-red-600 flex items-center justify-center text-white font-black text-2xl shadow-lg mb-2">
-                      📦
+                {/* Delivery Boy Styled Visual Card */}
+                <div className="w-full h-84 rounded-3xl overflow-hidden bg-gradient-to-b from-red-600 via-red-500 to-red-600 relative border border-slate-200 shadow-xl flex flex-col justify-between p-4 text-white">
+                  
+                  {/* Decorative background elements */}
+                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-xl pointer-events-none" />
+                  
+                  {/* Executive Header */}
+                  <div className="flex items-center justify-between z-10">
+                    <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md">
+                      Verified Crew
+                    </span>
+                    <span className="text-xs font-bold text-yellow-300">★ 4.9 Verified</span>
+                  </div>
+
+                  {/* Center Graphic */}
+                  <div className="text-center my-auto z-10 space-y-2">
+                    <div className="w-20 h-20 mx-auto rounded-2xl bg-white text-slate-900 flex flex-col items-center justify-center shadow-2xl border-2 border-red-200">
+                      <span className="text-3xl">📦</span>
+                      <span className="text-[9px] font-black tracking-tight text-red-600 uppercase">MyRollingBox</span>
                     </div>
-                    <span className="text-xs font-black text-slate-900 block">MyRollingBox Crew</span>
-                    <span className="text-[10px] font-bold text-red-600">Uniformed & Trained</span>
+                    <h4 className="text-sm font-black leading-tight">Safe Doorstep Delivery</h4>
+                    <p className="text-[10px] text-red-100 font-medium">Uniformed & Background-Verified Staff</p>
+                  </div>
+
+                  {/* Bottom Footer */}
+                  <div className="bg-black/30 backdrop-blur-md p-2 rounded-xl text-center z-10 border border-white/10">
+                    <span className="text-[10px] font-bold tracking-wide">100% Personal Lock Key Guarantee</span>
                   </div>
                 </div>
 
                 {/* Floating Bottom Right Badge */}
-                <div className="absolute -bottom-4 -right-2 bg-white rounded-2xl p-2.5 shadow-xl border border-slate-200 flex items-center gap-2">
+                <div className="absolute -bottom-4 -right-2 bg-white rounded-2xl p-2.5 shadow-xl border border-slate-200 flex items-center gap-2 z-30">
                   <div className="flex -space-x-2">
-                    <div className="w-7 h-7 rounded-full bg-red-500 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold">A</div>
-                    <div className="w-7 h-7 rounded-full bg-yellow-500 border-2 border-white flex items-center justify-center text-[10px] text-slate-900 font-bold">P</div>
-                    <div className="w-7 h-7 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-[10px] text-white font-bold">M</div>
+                    <div className="w-7 h-7 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[10px] text-white font-black">A</div>
+                    <div className="w-7 h-7 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-[10px] text-slate-900 font-black">P</div>
+                    <div className="w-7 h-7 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-[10px] text-white font-black">M</div>
                   </div>
                   <div>
                     <span className="text-[10px] text-slate-400 block font-semibold">Trusted by</span>

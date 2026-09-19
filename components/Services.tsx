@@ -5,13 +5,13 @@ import Link from "next/link";
 import { servicesData } from "@/data/servicesData";
 import { Home, Building2, Car, Warehouse, Package, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
 
-const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "home-relocation": Home,
-  "office-relocation": Building2,
-  "car-bike-transport": Car,
-  "storage-solutions": Warehouse,
-  "loading-unloading": Package,
-  "insurance-assistance": ShieldCheck,
+const serviceGraphics: Record<string, { icon: React.ComponentType<{ className?: string }>; bgGradient: string; badge: string }> = {
+  "home-relocation": { icon: Home, bgGradient: "from-red-50 to-amber-50", badge: "🏡 House Moving" },
+  "office-relocation": { icon: Building2, bgGradient: "from-blue-50 to-slate-50", badge: "🏢 Commercial" },
+  "car-bike-transport": { icon: Car, bgGradient: "from-amber-50 to-orange-50", badge: "🚗 Auto Transit" },
+  "storage-solutions": { icon: Warehouse, bgGradient: "from-emerald-50 to-teal-50", badge: "📦 Safe Warehousing" },
+  "loading-unloading": { icon: Package, bgGradient: "from-purple-50 to-pink-50", badge: "👷 Crew Handling" },
+  "insurance-assistance": { icon: ShieldCheck, bgGradient: "from-red-50 to-rose-50", badge: "🛡️ 100% Protection" },
 };
 
 interface ServicesProps {
@@ -41,7 +41,7 @@ export default function Services({ onOpenBookingModal }: ServicesProps) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => onOpenBookingModal()}
-              className="px-4 py-2 rounded-full bg-red-50 border border-red-100 text-xs font-bold text-red-600 hover:bg-red-100 transition-colors flex items-center gap-1.5"
+              className="px-4 py-2 rounded-full bg-red-50 border border-red-100 text-xs font-bold text-red-600 hover:bg-red-100 transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <span>Explore All Services</span>
               <span>→</span>
@@ -60,18 +60,22 @@ export default function Services({ onOpenBookingModal }: ServicesProps) {
         {/* 6 Services Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
           {servicesData.map((service) => {
-            const IconComponent = serviceIcons[service.slug] || Home;
+            const graphic = serviceGraphics[service.slug] || { icon: Home, bgGradient: "from-red-50 to-amber-50", badge: "Service" };
+            const IconComponent = graphic.icon;
             return (
               <div
                 key={service.id}
                 className="card-mockup p-5 flex flex-col justify-between group hover:border-red-600"
               >
                 <div>
-                  {/* Service Image / Icon Container */}
-                  <div className="w-full h-32 rounded-xl bg-slate-100 mb-4 overflow-hidden relative flex items-center justify-center border border-slate-200/80 group-hover:scale-105 transition-transform">
-                    <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 shadow-xs">
+                  {/* Service Graphic Illustration Card */}
+                  <div className={`w-full h-32 rounded-2xl bg-gradient-to-br ${graphic.bgGradient} mb-4 overflow-hidden relative flex flex-col items-center justify-center border border-slate-200/80 group-hover:scale-105 transition-transform p-3 text-center shadow-2xs`}>
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-red-600 shadow-md mb-2">
                       <IconComponent className="w-6 h-6" />
                     </div>
+                    <span className="text-[10px] font-extrabold text-slate-700 bg-white/80 px-2 py-0.5 rounded-full border border-slate-200">
+                      {graphic.badge}
+                    </span>
                   </div>
 
                   <h3 className="text-sm font-extrabold text-slate-900 mb-1 group-hover:text-red-600 transition-colors">
